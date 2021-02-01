@@ -1,43 +1,36 @@
 {
-  "collectionName": "strapi_administrator",
+  "kind": "collectionType",
+  "collectionName": "users-permissions_user",
   "info": {
-    "name": "User",
+    "name": "user",
     "description": ""
   },
+  "options": {
+    "draftAndPublish": false,
+    "timestamps": true
+  },
   "attributes": {
-    "firstname": {
-      "type": "string",
-      "unique": false,
-      "minLength": 1,
-      "configurable": false,
-      "required": false
-    },
-    "lastname": {
-      "type": "string",
-      "unique": false,
-      "minLength": 1,
-      "configurable": false,
-      "required": false
-    },
     "username": {
       "type": "string",
-      "unique": false,
+      "minLength": 3,
+      "unique": true,
       "configurable": false,
-      "required": false
+      "required": true
     },
     "email": {
       "type": "email",
       "minLength": 6,
       "configurable": false,
-      "required": true,
-      "unique": true,
-      "private": true
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
     },
     "password": {
       "type": "password",
       "minLength": 6,
       "configurable": false,
-      "required": false,
       "private": true
     },
     "resetPasswordToken": {
@@ -45,31 +38,49 @@
       "configurable": false,
       "private": true
     },
-    "registrationToken": {
+    "confirmationToken": {
       "type": "string",
       "configurable": false,
       "private": true
     },
-    "isActive": {
+    "confirmed": {
       "type": "boolean",
       "default": false,
-      "configurable": false,
-      "private": true
-    },
-    "roles": {
-      "collection": "role",
-      "collectionName": "strapi_users_roles",
-      "via": "users",
-      "dominant": true,
-      "plugin": "admin",
-      "configurable": false,
-      "private": true
+      "configurable": false
     },
     "blocked": {
       "type": "boolean",
       "default": false,
-      "configurable": false,
-      "private": true
+      "configurable": false
+    },
+    "role": {
+      "model": "role",
+      "via": "users",
+      "plugin": "users-permissions",
+      "configurable": false
+    },
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "invitationCode": {
+      "type": "string"
+    },
+    "bestContactNumber": {
+      "type": "string",
+      "maxLength": 30
+    },
+    "subscribed": {
+      "type": "boolean",
+      "default": true
+    },
+    "deactivated": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
